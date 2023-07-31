@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block content %}
+    <h1>Create A New Todo</h1>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}
