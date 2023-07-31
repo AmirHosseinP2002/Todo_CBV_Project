@@ -1,5 +1,5 @@
-from django.shortcuts import render, reverse
-from django.views import generic
+from django.shortcuts import render, reverse, get_object_or_404, redirect
+from django.views import generic, View
 from django.urls import reverse_lazy
 
 from .models import Todo
@@ -46,3 +46,19 @@ class TodoDeleteView(generic.DeleteView):
     model = Todo
     template_name = 'todos/todo_delete.html'
     success_url = reverse_lazy('todos:todos_list')
+
+
+class TodoUpdateCheckboxView(View):
+    def post(self, request, pk, *args, **kwargs):
+        todo = get_object_or_404(Todo, pk=pk)
+        is_completed = self.request.POST.get('is_completed', False) == 'on'
+        todo.is_completed = is_completed
+        todo.save()
+        return redirect('todos:todos_list')
+
+
+class TodoDeleteIconView(View):
+    def get(self, request, pk, *args, **kwargs):
+        todo = get_object_or_404(Todo, pk=pk)
+        todo.delete()
+        return redirect('todos:todos_list')
