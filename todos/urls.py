@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:pk>/', views.TodoDetailView.as_view(), name='todo_detail'),
     path('create/', views.TodoCreateView.as_view(), name='todo_create'),
     path('<int:pk>/update/', views.TodoUpdateView.as_view(), name='todo_update'),
+    path('<int:pk>/delete/', views.TodoDeleteView.as_view(), name='todo_delete'),
 ]

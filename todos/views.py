@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .models import Todo
 from .forms import TodoForm
@@ -39,3 +40,9 @@ class TodoUpdateView(generic.UpdateView):
 
     def get_success_url(self):
         return reverse('todos:todo_detail', args=[self.object.id])
+
+
+class TodoDeleteView(generic.DeleteView):
+    model = Todo
+    template_name = 'todos/todo_delete.html'
+    success_url = reverse_lazy('todos:todos_list')
