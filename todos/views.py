@@ -30,3 +30,12 @@ class TodoCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('todos:todos_list')
+
+
+class TodoUpdateView(generic.UpdateView):
+    model = Todo
+    form_class = TodoForm
+    template_name = 'todos/todo_update.html'
+
+    def get_success_url(self):
+        return reverse('todos:todo_detail', args=[self.object.id])
