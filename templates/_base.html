@@ -17,6 +17,16 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+    <p>
+        Hello {{ user.first_name|default:user.username }}, Welcome to my web page
+        <span>|</span>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+    </p>
+    {% else %}
+        <a href="{% url 'accounts:login' %}">Login</a>
+    {% endif %}
+
     {% block content %}
 
     {% endblock %}

@@ -19,7 +19,7 @@
     <div class="row mt-3">
         <div class="offset-md-2 col-lg-6">
             <div class="list-group">
-                <div class="list-group-item {% if todo.is_completed %} todo-complete {% endif %}">
+                <div class="list-group-item">
                     <p>{{ todo.description|linebreaks }}</p>
                     <p>Created By: {{ todo.author }}</p>
                     <small>{{ todo.datetime_created }}</small>

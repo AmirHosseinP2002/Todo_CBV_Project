@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 
@@ -16,7 +16,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authentication successfully')
+                    return redirect('todos:todos_list')
                 else:
                     return HttpResponse('Disable Login')
             else:
@@ -31,4 +31,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponse('Logout successfully')
+    return redirect('home')
