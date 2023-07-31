@@ -11,3 +11,9 @@ class TodoListView(generic.ListView):
 
     def get_queryset(self):
         return Todo.objects.filter(author=self.request.user)
+
+
+class TodoDetailView(generic.DetailView):
+    model = Todo
+    template_name = 'todos/todo_detail.html'
+    context_object_name = 'todo'
